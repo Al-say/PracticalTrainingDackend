@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.magic.mapper.BackdownMapper">
+    <select id="selectBackdownVo" resultType="backdownVo">
+        select distinct
+        bdn.id,
+        bdn.remarks,
+        bdn.is_deleted,
+        bdn.customer_id,
+        bdn.retreattime,
+        bdn.retreattype,
+        bdn.retreatreason,
+        bdn.auditstatus,
+        bdn.auditperson,
+        bdn.audittime,
+        cs.checkin_date,
+        cs.bed_id,
+        cs.customer_name
+        from
+        backdown bdn,
+        USER u,
+        beddetails bdd,
+        customer cs
+        where
+        cs.user_id = u.id
+        and cs.id = bdn.customer_id
+        and bdn.customer_id = bdd.customer_id
+        and bdn.is_deleted = 0
+        <if test="userId!=null and userId!=''">
+            and cs.id=#{userId}
+        </if>
+    </select>
+</mapper>

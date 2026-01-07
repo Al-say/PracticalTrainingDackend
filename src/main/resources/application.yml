@@ -1,0 +1,33 @@
+#端口号配置
+server:
+  port: 10086
+#数据库连接配置
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  # druid数据源
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_03?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+  jackson:   # Jackson全局配置
+    date-format: yyyy-MM-dd  # 日期格式
+    time-zone: GMT+8    # 时区
+
+#mybatis plus配置
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl  # 打印sql
+  mapper-locations: classpath*:mapper/*.xml  # mapper文件路径 默认值
+  type-aliases-package: cn.magic.entity,cn.magic.vo,cn.magic.dto  # 实体类包名
+  global-config:
+    db-config:
+      #配置mybatis plus 在更新时只更新非空和非NULL的字段
+      update-strategy: not_empty
+#日志配置
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd} [%thread] %-5level %logger- %msg%n'
+#图片上传
+web:
+  upload-path: D:/files/  #图片上传的路径
+  load-path: file:D://files/ #图片访问、加载的路径

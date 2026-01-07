@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.magic.mapper.MealMapper">
+    <select id="selectMealVo" resultType="MealVo">
+        select
+        m.id,
+        m.week_day,
+        m.food_id,
+        m.meal_type,
+        m.taste,
+        f.food_name,
+        f.food_type,
+        f.price,
+        f.is_halal,
+        f.food_img
+        from
+        meal m
+        join food f on (m.food_id = f.id)
+        <where>
+            m.is_deleted=0
+            <if test="meal_type!=null and meal_type!=''">
+                and meal_type =#{meal_type}
+            </if>
+            <if test="week_day!=null and week_day!=''">
+                and week_day =#{week_day}
+            </if>
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.magic.mapper.BedMapper">
+
+    <!-- 查询床位统计信息 -->
+    <select id="selectBedCount" resultType="cn.magic.vo.BedVo">
+        SELECT
+            COUNT(*) as zcw,
+            SUM(CASE WHEN bed_status = 1 THEN 1 ELSE 0 END) as kx,
+            SUM(CASE WHEN bed_status = 2 THEN 1 ELSE 0 END) as yr,
+            SUM(CASE WHEN bed_status = 3 THEN 1 ELSE 0 END) as wc
+        FROM bed
+    </select>
+
+</mapper>

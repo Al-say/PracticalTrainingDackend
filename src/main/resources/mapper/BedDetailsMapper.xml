@@ -1,0 +1,32 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.magic.mapper.BedDetailsMapper">
+    <!-- 关联查询  -->
+    <select id="selectBedDetailsVo" resultType="bedDetailsVo">
+        SELECT
+        b.id,
+        b.is_deleted,
+        b.start_date,
+        b.end_date,
+        b.bed_details,
+        b.customer_id,
+        b.bed_id,
+        c.customer_name,
+        c.customer_sex
+        FROM
+        beddetails b
+        LEFT JOIN customer c ON (b.customer_id = c.id)
+        <where>
+            <if test="detailsDTO !=null and detailsDTO.customerName !=null and detailsDTO.customerName !=''">
+                and c.customer_name like concat('%','${detailsDTO.customerName}','%')
+            </if>
+            <if test="detailsDTO !=null and detailsDTO.startDate !=null and detailsDTO.endDate !=null">
+                and b.start_date >= #{detailsDTO.startDate} and #{detailsDTO.endDate} >= b.start_date
+            </if>
+            and b.is_deleted = #{detailsDTO.isDeleted}
+        </where>
+        order by b.end_date desc
+    </select>
+</mapper>

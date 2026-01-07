@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.magic.mapper.CustomerPreferenceMapper">
+    <select id="selectCustomerPreferenceVo" resultType="CustomerPreferenceVo">
+        select
+        cp.id,
+        cp.customer_id,
+        c.customer_name,
+        c.customer_sex,
+        c.customer_age,
+        cp.preferences,
+        cp.attention,
+        cp.remark
+        from customerpreference cp
+        join customer c on (cp.customer_id = c.id)
+        <where>
+            cp.is_deleted=0
+            <if test="customerName!=null and customerName!=''">
+                and customer_name like concat('%','${customerName}','%')
+            </if>
+        </where>
+    </select>
+</mapper>
