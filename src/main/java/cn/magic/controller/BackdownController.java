@@ -8,7 +8,9 @@ import cn.magic.service.BackdownService;
 import cn.magic.service.BedService;
 import cn.magic.service.CustomerService;
 import cn.magic.utils.ResultVo;
+import cn.magic.vo.BackdownVo;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +26,7 @@ public class BackdownController {
     private CustomerService customerService;
 
     // 函数注释 行间注释 添加日志 生成单测 代码解释 接口文档 调优建议
-    //查询退住信息
+    //查询退住信息    mvn spring-boot:run    mvn spring-boot:run    mvn spring-boot:run
     @PostMapping("/listBackdown")
     public ResultVo<Page<BackdownVo>> listBackdown(@RequestBody BackdownDTO backdownDTO) throws Exception {
         return backdownService.listBackdownVo(backdownDTO);
