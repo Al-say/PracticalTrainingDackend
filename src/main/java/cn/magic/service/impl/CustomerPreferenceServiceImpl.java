@@ -24,7 +24,9 @@ public class CustomerPreferenceServiceImpl
     public ResultVo<Page<CustomerPreferenceVo>> listCustomerPreferenceVoPage(CustomerPreferenceDTO dto)
             throws Exception {
         //创建分页对象
-        Page<CustomerPreferenceVo> page = new Page<>(dto.getCurPage(),dto.getPageSize());
+        int curPage = dto.getCurPage() != null ? dto.getCurPage() : 1;
+        int pageSize = dto.getPageSize() != null ? dto.getPageSize() : 10;
+        Page<CustomerPreferenceVo> page = new Page<>(curPage, pageSize);
         customerPreferenceMapper.selectCustomerPreferenceVo(page, dto.getCustomerName());
         return ResultVo.ok(page);
     }

@@ -1,0 +1,27 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.magic.mapper.NurserecordMapper">
+    <select id="selectNurseRecordsVo" resultType="NurseRecordsVo">
+        select nr.id,
+               nr.is_deleted,
+               nr.customer_id,
+               nr.item_id,
+               nr.nursing_time,
+               nr.nursing_content,
+               nr.nursing_count,
+               nr.user_id,
+               u.nickname,
+               u.phone_number,
+               nc.serial_number,
+               nc.nursing_name
+        from nurserecord nr,
+             user u,
+             nursecontent nc
+        where nr.user_id = u.id
+          and nr.item_id = nc.id
+          and nr.is_deleted = 0
+          and nr.customer_id = #{customerId}
+    </select>
+</mapper>

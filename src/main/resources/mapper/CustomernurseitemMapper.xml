@@ -1,0 +1,25 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.magic.mapper.CustomernurseitemMapper">
+    <select id="selectCustomerItemVo" resultType="CustomerNurseItemVo">
+        SELECT cni.id,
+               cni.item_id,
+               cni.customer_id,
+               cni.level_id,
+               cni.nurse_number,
+               cni.is_deleted,
+               cni.buy_time,
+               cni.maturity_time,
+               c.customer_name,
+               nc.serial_number,
+               nc.nursing_name,
+               nc.service_price
+        FROM customernurseitem cni
+                 JOIN customer c ON (cni.customer_id = c.id)
+                 JOIN nursecontent nc ON (cni.item_id = nc.id)
+        WHERE cni.is_deleted = 0
+          AND cni.customer_id = #{customerId}
+    </select>
+</mapper>
