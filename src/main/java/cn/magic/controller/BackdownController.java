@@ -26,7 +26,7 @@ public class BackdownController {
     private CustomerService customerService;
 
     // 函数注释 行间注释 添加日志 生成单测 代码解释 接口文档 调优建议
-    //查询退住信息    mvn spring-boot:run    mvn spring-boot:run    mvn spring-boot:run
+    //查询退住信息
     @PostMapping("/listBackdown")
     public ResultVo<Page<BackdownVo>> listBackdown(@RequestBody BackdownDTO backdownDTO) throws Exception {
         return backdownService.listBackdownVo(backdownDTO);

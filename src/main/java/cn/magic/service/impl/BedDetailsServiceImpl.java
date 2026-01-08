@@ -32,7 +32,13 @@ public class BedDetailsServiceImpl extends ServiceImpl<BedDetailsMapper, BedDeta
     //查询床位详情
     @Override
     public ResultVo<Page<BedDetailsVo>> listBedDetailsVoPage(BedDetailsDTO bedDetailsDTO) throws Exception {
-        Page<BedDetailsVo> page = new Page<>(bedDetailsDTO.getPageSize(), 8);
+        // 处理空值默认情况
+        int current = bedDetailsDTO.getPageNum() == null ? 1 : bedDetailsDTO.getPageNum();
+        int size = bedDetailsDTO.getPageSize() == null ? 6 : bedDetailsDTO.getPageSize();
+
+        // Page构造函数第一个参数是 current(当前页)，第二个是 size(每页条数)
+        Page<BedDetailsVo> page = new Page<>(current, size); 
+        
         bedDetailsMapper.selectBedDetailsVo(page, bedDetailsDTO);
         return ResultVo.ok(page);
     }

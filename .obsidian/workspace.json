@@ -6,6 +6,7 @@
       {
         "id": "2d3fcfd77418c735",
         "type": "tabs",
+        "dimension": 72.64957264957265,
         "children": [
           {
             "id": "d91fe9b650329c78",
@@ -13,12 +14,34 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "阶段1-3-2教学笔记-客户管理.md",
+                "file": "阶段1-4教学笔记-护理管理.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "阶段1-3-2教学笔记-客户管理"
+              "title": "阶段1-4教学笔记-护理管理"
+            }
+          }
+        ]
+      },
+      {
+        "id": "3691eae1af2760a6",
+        "type": "tabs",
+        "dimension": 27.350427350427353,
+        "children": [
+          {
+            "id": "c205a7ce4eb8c497",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "阶段1-4教学笔记-护理管理.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "阶段1-4教学笔记-护理管理 的大纲"
             }
           }
         ]
@@ -95,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "阶段1-3-2教学笔记-客户管理.md",
+                "file": "阶段1-4教学笔记-护理管理.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +128,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "阶段1-3-2教学笔记-客户管理 的反向链接列表"
+              "title": "阶段1-4教学笔记-护理管理 的反向链接列表"
             }
           },
           {
@@ -114,12 +137,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "阶段1-3-2教学笔记-客户管理.md",
+                "file": "阶段1-4教学笔记-护理管理.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "阶段1-3-2教学笔记-客户管理 的出链列表"
+              "title": "阶段1-4教学笔记-护理管理 的出链列表"
             }
           },
           {
@@ -152,18 +175,18 @@
             }
           },
           {
-            "id": "75d73825546a9ed8",
+            "id": "4af624af4162b930",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "阶段1-3-2教学笔记-客户管理.md",
+                "file": "阶段1-4教学笔记-护理管理.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "阶段1-3-2教学笔记-客户管理 的大纲"
+              "title": "阶段1-4教学笔记-护理管理 的大纲"
             }
           }
         ]
@@ -186,17 +209,19 @@
   },
   "active": "d91fe9b650329c78",
   "lastOpenFiles": [
-    "target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst",
-    "target/test-classes/org/example/practicaltrainingdackend/PracticalTrainingDackendApplicationTests.class",
-    "target/test-classes/org/example/practicaltrainingdackend",
-    "target/test-classes/org/example",
-    "target/test-classes/org",
-    "target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst",
-    "target/maven-status/maven-compiler-plugin/testCompile/default-testCompile",
-    "target/maven-status/maven-compiler-plugin/testCompile",
-    "target/test-classes",
-    "target/generated-test-sources/test-annotations",
-    "target/generated-test-sources",
+    "target/classes/cn/magic/controller/NursecontentController.class",
+    "target/classes/cn/magic/controller/IndexController.class",
+    "target/classes/cn/magic/vo/MealVo.class",
+    "target/classes/cn/magic/service/RoomService.class",
+    "target/classes/cn/magic/dto/ExchangeDTO.class",
+    "target/classes/cn/magic/service/impl/BackdownServiceImpl.class",
+    "src/main/java/cn/magic/controller/NursecontentController.java",
+    "target/classes/cn/magic/mapper/NurselevelMapper.class",
+    "target/classes/cn/magic/dto/NurseItemDTO.class",
+    "src/main/java/cn/magic/dto/NurseItemDTO.java",
+    "target/classes/cn/magic/controller/NurselevelController.class",
+    "阶段1-4教学笔记-护理管理.md",
+    "阶段1-3教学笔记-客户管理.md",
     "阶段1-2教学笔记-搭建后端.md",
     "阶段1-3-2教学笔记-客户管理.md"
   ]

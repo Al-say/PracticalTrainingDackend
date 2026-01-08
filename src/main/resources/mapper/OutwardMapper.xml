@@ -1,0 +1,33 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.magic.mapper.OutwardMapper">
+    <select id="selectOutwardVo" resultType="OutwardVo">
+        select distinct
+        u.nickname,
+        u.phone_number,
+        ow.id,
+        ow.remarks,
+        ow.is_deleted,
+        ow.customer_id,
+        ow.outgoingreason,
+        ow.outgoingtime,
+        ow.expectedreturntime,
+        ow.actualreturntime,
+        ow.escorted,
+        ow.relation,
+        ow.escortedtel,
+        ow.auditstatus,
+        ow.auditperson,
+        ow.audittime,
+        cs.customer_name
+        from outward ow,user u,customer cs
+        where cs.user_id=u.id
+        and ow.customer_id = cs.id
+        and ow.is_deleted=0
+        <if test="userId!=null and userId!=''">
+            and cs.id=#{userId}
+        </if>
+    </select>
+</mapper>

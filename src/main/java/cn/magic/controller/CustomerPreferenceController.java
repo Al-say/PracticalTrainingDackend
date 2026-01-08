@@ -1,20 +1,25 @@
 package cn.magic.controller;
 
 import cn.magic.dto.CustomerPreferenceDTO;
+import cn.magic.entity.Customer;
 import cn.magic.entity.CustomerPreference;
 import cn.magic.service.CustomerPreferenceService;
+import cn.magic.service.CustomerService;
 import cn.magic.utils.ResultVo;
 import cn.magic.vo.CustomerPreferenceVo;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/customerpreference")
 public class CustomerPreferenceController {
     @Resource
     private CustomerPreferenceService customerPreferenceService;
+    @Resource
+    private CustomerService customerService;
 
     //为顾客单个添加喜好
     @PostMapping("/addCustomerperference")
@@ -39,5 +44,15 @@ public class CustomerPreferenceController {
     @GetMapping("/listCustomerpreferencePage")
     public ResultVo<Page<CustomerPreferenceVo>> listCustomerpreferencePage(CustomerPreferenceDTO customerPreferenceDTO) throws Exception {
         return customerPreferenceService.listCustomerPreferenceVoPage(customerPreferenceDTO);
+    }
+    
+    @GetMapping("/customerList")
+    public ResultVo<List<Customer>> customerList() throws Exception {
+        List<Customer> list = customerService.list();
+        if (list != null) {
+            return ResultVo.ok(list);
+        } else {
+            return ResultVo.fail("查询失败");
+        }
     }
 }

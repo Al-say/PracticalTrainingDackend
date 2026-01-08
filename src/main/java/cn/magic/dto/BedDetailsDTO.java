@@ -12,6 +12,7 @@ import java.util.Date;
 public class BedDetailsDTO {
     private String customerName;  //客户姓名
     private Integer pageSize; //每页显示的记录数
+    private Integer pageNum;  // 当前第几页
     private Integer isDeleted; //查询类型 0-生效床位信息 1-失效床位信息(历史记录)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate; //开始时间

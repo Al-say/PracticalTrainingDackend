@@ -30,4 +30,4 @@ logging:
 #图片上传
 web:
   upload-path: D:/files/  #图片上传的路径
-  load-path: file:D://files/ #图片访问、加载的路径
+  load-path: file:D:/files/ #图片访问、加载的路径

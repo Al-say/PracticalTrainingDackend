@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 //客户管理控制类
 @RestController
 @RequestMapping("/customer")
@@ -41,5 +43,9 @@ public class CustomerController {
     public ResultVo<String> editCustomer(@RequestBody Customer customer) throws Exception {
         customerService.updateById(customer);
         return ResultVo.ok("编辑成功");
+    }
+    @GetMapping("/getCustomerList")
+    public List<Customer> getCstmList() throws Exception {
+        return customerService.list();
     }
 }

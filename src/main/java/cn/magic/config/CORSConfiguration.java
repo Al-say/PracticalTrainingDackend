@@ -2,10 +2,10 @@ package cn.magic.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.lang.NonNull;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.lang.NonNull;
 
 @Configuration
 public class CORSConfiguration implements WebMvcConfigurer {
@@ -17,13 +17,8 @@ public class CORSConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) {
         registry.addMapping("/**") // 允许跨域访问的路径
-                // 建议：明确指定允许的前端地址，不要使用通配符
-                .allowedOriginPatterns(
-                    "http://localhost:8080", 
-                    "http://localhost:5173", // Vite 默认端口
-                    "https://www.your-production-domain.com"
-                )
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")        // 允许跨域访问的方法
+                .allowedOriginPatterns("*")  // 允许跨域访问的源
+                .allowedMethods("*")        // 允许跨域访问的方法
                 .allowedHeaders("*")        // 允许跨域访问的请求头
                 .maxAge(3600)               // 预检请求的缓存时间（秒），即在这个时间段里，对于相同的跨域请求不会再预检了
                 .allowCredentials(true);//允许携带cookie

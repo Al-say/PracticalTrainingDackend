@@ -61,10 +61,12 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
 
     @Override
     public ResultVo<Page<CustomerVo>> FindCustomer(CustomerDTO customerDTO) throws Exception {
-        if (customerDTO.getPageSize()==null){
-            customerDTO.setPageSize(1);
-        }
-        Page<CustomerVo> page = new Page<>(customerDTO.getPageSize(), 6); //第一参数为当前页，第二个参数为页包含多少
+        // 处理空值默认情况
+        int current = customerDTO.getPageNum() == null ? 1 : customerDTO.getPageNum();
+        int size = customerDTO.getPageSize() == null ? 6 : customerDTO.getPageSize();
+
+        // Page构造函数第一个参数是 current(当前页)，第二个是 size(每页条数)
+        Page<CustomerVo> page = new Page<>(current, size);
         customerMapper.selectPageVo(page, customerDTO.getCustomerName(), customerDTO.getManType(), customerDTO.getUserId());
         return ResultVo.ok(page);
     }
