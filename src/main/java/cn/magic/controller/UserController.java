@@ -1,6 +1,7 @@
 package cn.magic.controller;
 
 import cn.magic.dto.LoginDTO;
+import cn.magic.dto.UpdatePasswordDTO;
 import cn.magic.dto.UserDTO;
 import cn.magic.entity.User;
 import cn.magic.service.UserService;
@@ -137,5 +138,23 @@ public class UserController {
         }
         //返回登录信息
         return ResultVo.ok(user);
+    }
+    //修改密码
+    @PutMapping("/updatePassword")
+    public ResultVo updatePassword(@RequestBody UpdatePasswordDTO param){
+        //验证原密码是否正确
+        User user = userService.getById(param.getUserId());
+        //原密码加密
+        String oldPassword = DigestUtils.md5DigestAsHex(param.getOldPassword().getBytes());
+        if(!user.getPassword().equals(oldPassword)){
+            return ResultVo.fail("原密码不正确!");
+        }
+        UpdateWrapper<User> query = new UpdateWrapper<>();
+        query.lambda().set(User::getPassword,DigestUtils.md5DigestAsHex(param.getPassword().getBytes()))
+             .eq(User::getId,param.getUserId());
+        if(userService.update(query)){
+            return ResultVo.ok("修改成功!");
+        }
+        return ResultVo.ok("修改失败！");
     }
 }

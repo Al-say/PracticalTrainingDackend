@@ -208,6 +208,8 @@
   },
   "active": "d91fe9b650329c78",
   "lastOpenFiles": [
+    "target/classes/cn/magic/dto/UpdatePasswordDTO.class",
+    "src/main/java/cn/magic/dto/UpdatePasswordDTO.java",
     "target/classes/cn/magic/dto/LoginDTO.class",
     "src/main/java/cn/magic/dto/LoginDTO.java",
     "target/classes/cn/magic/config/ImageConfig.class",
@@ -219,8 +221,6 @@
     "target/classes/cn/magic/dto/UserDTO.class",
     "target/classes/cn/magic/service/impl/UserServiceImpl.class",
     "src/main/java/cn/magic/dto/UserDTO.java",
-    "target/classes/cn/magic/service/UserService.class",
-    "src/main/java/cn/magic/service/impl/UserServiceImpl.java",
     "阶段1-4教学笔记-护理管理.md",
     "阶段1-3教学笔记-客户管理.md",
     "阶段1-2教学笔记-搭建后端.md",
