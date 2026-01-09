@@ -29,51 +29,102 @@ import java.util.Base64;
 @RequestMapping("/user")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserService userService; // 注入用户业务层服务
     @Autowired
     private DefaultKaptcha defaultKaptcha; // 验证码
 
-    //查询系统用户-分页
+    /**
+     * 查询系统用户 - 分页
+     * 对应前端接口: /user/findUserPage
+     */
     @GetMapping("/findUserPage")
     public ResultVo<Page<User>> findUserPage(UserDTO userDTO) throws Exception {
-        Page<User> page = new Page<>(userDTO.getPageSize(), 6);
+        // 1. 创建分页对象 (当前页, 每页条数)
+        // 注意：这里需要做空值处理，防止前端未传参数导致空指针
+        int current = userDTO.getCurPage() == null ? 1 : userDTO.getCurPage();
+        int size = userDTO.getPageSize() == null ? 10 : userDTO.getPageSize();
+        Page<User> page = new Page<>(current, size);
+
+        // 2. 构建查询条件
         QueryWrapper<User> qw = new QueryWrapper<>();
-        if (userDTO.getNickname()!= null && userDTO.getNickname() != "") {
+        // 昵称模糊查询
+        if (userDTO.getNickname() != null && !userDTO.getNickname().isEmpty()) {
             qw.like("nickname", userDTO.getNickname());
         }
-        qw.eq("role_id", userDTO.getRoleId());
-        qw.eq("is_deleted", 0); // 显示
+        // 角色查询
+        if (userDTO.getRoleId() != null) {
+            qw.eq("role_id", userDTO.getRoleId());
+        }
+        // 只查询未删除的用户
+        qw.eq("is_deleted", 0);
+
+        // 3. 执行分页查询
         userService.page(page, qw);
         return ResultVo.ok(page);
     }
-    //查询全部用户-分页
+    /**
+     * 查询全部用户 - 分页 (似乎与上面功能类似，可能是针对不同角色的通用查询)
+     * 对应前端接口: /user/findAllUserPage
+     */
     @GetMapping("/findAllUserPage")
     public ResultVo<Page<User>> findAllUserPage(UserDTO userDTO) throws Exception {
-        Page<User> page = new Page<>(userDTO.getPageSize(), 6);
+        // 1. 创建分页对象
+        int current = userDTO.getCurPage() == null ? 1 : userDTO.getCurPage();
+        int size = userDTO.getPageSize() == null ? 10 : userDTO.getPageSize();
+        Page<User> page = new Page<>(current, size);
+
+        // 2. 构建查询条件
         QueryWrapper<User> qw = new QueryWrapper<>();
-        qw.eq("is_deleted", 0); // 显示
-        qw.like("nickname",userDTO.getNickname());
+        if (userDTO.getNickname() != null && !userDTO.getNickname().isEmpty()) {
+            qw.like("nickname", userDTO.getNickname());
+        }
+        qw.eq("is_deleted", 0); // 显示未删除用户
+
+        // 3. 执行查询
         userService.page(page, qw);
         return ResultVo.ok(page);
     }
-    //添加用户
+    /**
+     * 添加用户
+     * 对应前端接口: /user/addUser
+     */
     @PostMapping("/addUser")
     public ResultVo addUser(@RequestBody User user) throws Exception {
-        user.setIsDeleted(0);
+        user.setIsDeleted(0); // 默认状态为正常
+        // 建议在此处对密码进行加密处理，例如：user.setPassword(SecureUtil.md5(user.getPassword()));
         userService.save(user);
         return ResultVo.ok("添加成功");
     }
-    //修改用户
+    /**
+     * 修改用户
+     * 对应前端接口: /user/updateUser
+     */
     @PostMapping("/updateUser")
     public ResultVo updateUser(@RequestBody User user) throws Exception {
-        UpdateWrapper<User> updateWrapper = new UpdateWrapper<User>();
+        // 使用 UpdateWrapper 指定更新条件
+        UpdateWrapper<User> updateWrapper = new UpdateWrapper<>();
         updateWrapper.eq("id", user.getId());
+        
+        // 执行更新
         userService.update(user, updateWrapper);
         return ResultVo.ok("修改成功");
     }
-    //删除用户
+    /**
+     * 删除用户 (逻辑删除)
+     * 对应前端接口: /user/delUser/{id}
+     */
     @DeleteMapping("/delUser/{id}")
-    public ResultVo deleteUser(@PathVariable("id") Integer id) throws Exception{
+    public ResultVo deleteUser(@PathVariable("id") Integer id) throws Exception {
+        // 如果配置了 @TableLogic，removeById 会自动执行逻辑删除 (update is_deleted = 1)
+        // 如果没配置，这里则是物理删除。根据你的代码逻辑，可能需要手动更新 isDeleted 字段
+        // 建议使用 userService.removeById(id); 配合 MyBatisPlus 的逻辑删除配置
+        
+        // 手动逻辑删除写法（如果没配全局逻辑删除）：
+        // User user = new User();
+        // user.setId(id);
+        // user.setIsDeleted(1);
+        // userService.updateById(user);
+        
         userService.removeById(id);
         return ResultVo.ok("删除成功");
     }
