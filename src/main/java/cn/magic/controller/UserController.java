@@ -172,17 +172,22 @@ public class UserController {
         if(StringUtils.isEmpty(code)){
             return ResultVo.fail("验证码过期!");
         }
+
         //对比验证码
         if(!codeParm.equals(code)){
             return ResultVo.fail("验证码错误!");
         }
         //验证用户信息
         QueryWrapper<User> query = new QueryWrapper<>();
-        query.lambda().eq(User::getUsername,dto.getUsername())
-                .eq(User::getPassword, DigestUtils.md5DigestAsHex(dto.getPassword().getBytes()));
+        query.lambda().eq(User::getUsername,dto.getUsername()); //根据用户名查询
+                //.eq(User::getPassword, DigestUtils.md5DigestAsHex(dto.getPassword().getBytes()));
         User user = userService.getOne(query);
         if(user == null){
-            return ResultVo.fail("用户名或者密码错误!");
+            return ResultVo.fail("用户名不存在，重新输入用户昵称!");
+        }
+
+        if(!user.getPassword().equals(DigestUtils.md5DigestAsHex(dto.getPassword().getBytes()))){
+            return ResultVo.fail("密码错误!重新输入密码！！！");
         }
         if(user.getIsDeleted().equals("1")){
             return ResultVo.fail("账户被停用，请联系管理员!");
