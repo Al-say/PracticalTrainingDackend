@@ -14,12 +14,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "阶段1-4教学笔记-护理管理.md",
+                "file": "阶段1-6教学笔记-用户管理.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "阶段1-4教学笔记-护理管理"
+              "title": "阶段1-6教学笔记-用户管理"
             }
           }
         ]
@@ -35,13 +35,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "阶段1-4教学笔记-护理管理.md",
+                "file": "阶段1-6教学笔记-用户管理.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "阶段1-4教学笔记-护理管理 的大纲"
+              "title": "阶段1-6教学笔记-用户管理 的大纲"
             }
           }
         ]
@@ -101,8 +101,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "0427f0a892fbaa97",
@@ -209,17 +208,19 @@
   },
   "active": "d91fe9b650329c78",
   "lastOpenFiles": [
-    "target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst",
-    "target/test-classes/org/example/practicaltrainingdackend/PracticalTrainingDackendApplicationTests.class",
-    "target/test-classes/org/example/practicaltrainingdackend",
-    "target/test-classes/org/example",
-    "target/test-classes/org",
-    "target/test-classes",
-    "target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst",
-    "target/maven-status/maven-compiler-plugin/testCompile/default-testCompile",
-    "target/maven-status/maven-compiler-plugin/testCompile",
-    "target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst",
-    "target/classes/cn/magic/config/MybatisPlusConfig.class",
+    "target/classes/cn/magic/dto/LoginDTO.class",
+    "src/main/java/cn/magic/dto/LoginDTO.java",
+    "target/classes/cn/magic/config/ImageConfig.class",
+    "src/main/java/cn/magic/config/ImageConfig.java",
+    "阶段1-5教学笔记-健康管理.md",
+    "阶段1-6教学笔记-用户管理.md",
+    "target/classes/cn/magic/controller/UserController.class",
+    "src/main/java/cn/magic/controller/UserController.java",
+    "target/classes/cn/magic/dto/UserDTO.class",
+    "target/classes/cn/magic/service/impl/UserServiceImpl.class",
+    "src/main/java/cn/magic/dto/UserDTO.java",
+    "target/classes/cn/magic/service/UserService.class",
+    "src/main/java/cn/magic/service/impl/UserServiceImpl.java",
     "阶段1-4教学笔记-护理管理.md",
     "阶段1-3教学笔记-客户管理.md",
     "阶段1-2教学笔记-搭建后端.md",

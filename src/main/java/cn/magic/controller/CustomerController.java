@@ -48,4 +48,10 @@ public class CustomerController {
     public List<Customer> getCstmList() throws Exception {
         return customerService.list();
     }
+    // 【新增】查询所有客户列表（用于下拉框选择）
+    @GetMapping("/customerList")
+    public ResultVo<List<Customer>> customerList() throws Exception {
+        List<Customer> list = customerService.list();
+        return ResultVo.ok(list);
+    }
 }

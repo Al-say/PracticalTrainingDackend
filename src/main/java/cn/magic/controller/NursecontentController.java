@@ -19,6 +19,20 @@ public class NursecontentController {
     @PostMapping("/addNurseItem")
     public ResultVo<String> addNurseItem(@RequestBody Nursecontent nursecontent) throws Exception {
         nursecontent.setIsDeleted(0);
+        // 生成编号，如果没有提供
+        if (nursecontent.getSerialNumber() == null || nursecontent.getSerialNumber().isEmpty()) {
+            nursecontent.setSerialNumber("HLXM" + System.currentTimeMillis());
+        }
+        // 设置默认值
+        if (nursecontent.getServicePrice() == null || nursecontent.getServicePrice().isEmpty()) {
+            nursecontent.setServicePrice("免费");
+        }
+        if (nursecontent.getExecutionCycle() == null || nursecontent.getExecutionCycle().isEmpty()) {
+            nursecontent.setExecutionCycle("每天");
+        }
+        if (nursecontent.getExecutionTimes() == null || nursecontent.getExecutionTimes().isEmpty()) {
+            nursecontent.setExecutionTimes("1");
+        }
         nursecontentService.save(nursecontent);
         return ResultVo.ok("新增成功");
     }
